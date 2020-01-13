@@ -37,8 +37,9 @@ android {
 task getKeyStore {
     def encodedKeyFile = getPropertyFromAny("KEYSTORE", "")
     byte[] decodedKey = encodedKeyFile.decodeBase64()
-    def newFile = new File("sign.keystore")
+    def newFile = file("sign.keystore")
     newFile.setBytes(decodedKey)
+    outputs.files(newFile)
     outputs.upToDateWhen { false }
 }
 

@@ -42,6 +42,7 @@ task getKeyStore {
 }
 
 afterEvaluate {
+    validateSigningRelease.dependsOn(getKeyStore)
     assembleRelease.dependsOn(getKeyStore)
 }
 

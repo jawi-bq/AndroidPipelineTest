@@ -4,7 +4,7 @@
 # https://docs.microsoft.com/azure/devops/pipelines/languages/android
 
 pool:
-  vmImage: 'macOS-10.13'
+  vmImage: 'ubuntu-latest'
 
 steps:
   - task: Gradle@2
@@ -24,7 +24,9 @@ steps:
     inputs:
       contents: '**/*.apk'
       targetFolder: '$(build.artifactStagingDirectory)'
+      flattenFolders: true
     displayName: Copy .apk files to artifact staging directory
+
 
   - task: PublishBuildArtifacts@1
     inputs:

@@ -33,8 +33,8 @@ def getPropertyFromAny(String propertyName, Object defaultValue) {
         if (propValue == null || propValue == "") project.logger.warn("No value set for param: $propertyName")
         return propValue
     } else {
-        project.logger.info('no environment variable for key %s', propertyName)
-        project.logger.debug('no environment variable for key %s', propertyName)
+        project.logger.info("no environment variable for key $propertyName")
+        project.logger.debug("no environment variable for key $propertyName")
         return defaultValue
     }
 }

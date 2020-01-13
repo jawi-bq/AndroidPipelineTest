@@ -28,7 +28,7 @@ task clean(type: Delete) {
 }
 
 def getPropertyFromAny(String propertyName, Object defaultValue) {
-    if (project.findProperty(propertyName) || System.hasProperty(propertyName)) {
+    if (project.findProperty(propertyName) || System.getenv(propertyName) != null) {
         def propValue = project.findProperty(propertyName) ?: System.getenv(propertyName)
         if (propValue == null || propValue == "") project.logger.warn("No value set for param: $propertyName")
         return propValue

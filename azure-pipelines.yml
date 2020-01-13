@@ -12,6 +12,10 @@ steps:
     inputs:
       secureFile: sign.keystore # The name with which to reference the secure file. This is NOT the actual filename but the name you give it after uploading it.
 
+  - task: Bash@3
+    inputs:
+      filePath: 'start_emulator.sh'
+
   - task: Gradle@2
     env:
       KEYSTORE_PASSWORD: $(KEYSTORE_PASSWORD)

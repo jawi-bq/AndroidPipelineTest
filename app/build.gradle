@@ -19,8 +19,19 @@ android {
         release {
             minifyEnabled false
             proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+            signingConfig signingConfigs.release
         }
     }
+
+    signingConfigs {
+        release {
+            storeFile file("../sign.keystore")
+            storePassword getPropertyFromAny("KEYSTORE_PASSWORD", "")
+            keyAlias getPropertyFromAny("KEY_ALIAS", "")
+            keyPassword getPropertyFromAny("KEY_PASSWORD", "")
+        }
+    }
+
 }
 
 dependencies {

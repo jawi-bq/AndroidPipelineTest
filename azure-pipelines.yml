@@ -7,6 +7,11 @@ pool:
   vmImage: 'ubuntu-latest'
 
 steps:
+  - task: DownloadSecureFile@1
+    name: sign.keystore #This is user defined and can be used like $(TheNameOfTheVariable.secureFilePath)
+    inputs:
+      secureFile: sign.keystore # The name with which to reference the secure file. This is NOT the actual filename but the name you give it after uploading it.
+
   - task: Gradle@2
     inputs:
       workingDirectory: ''

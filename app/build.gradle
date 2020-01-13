@@ -18,7 +18,7 @@ android {
 
     signingConfigs {
         release {
-            storeFile file("../../sign.keystore")
+            storeFile file("sign.keystore")
             storePassword getPropertyFromAny("KEYSTORE_PASSWORD", "")
             keyAlias getPropertyFromAny("KEY_ALIAS", "")
             keyPassword getPropertyFromAny("KEY_PASSWORD", "")
@@ -32,6 +32,17 @@ android {
             signingConfig signingConfigs.release
         }
     }
+}
+
+task getKeyStore {
+    def encodedKeyFile = getPropertyFromAny("KEYSTORE", "")
+    byte[] decodedKey = encodedKeyFile.decodeBase64()
+    def newFile = new File("sign.keystore")
+    newFile.setBytes(decodedKey)
+}
+
+afterEvaluate {
+    assembleRelease.dependsOn(getKeyStore)
 }
 
 dependencies {

@@ -39,6 +39,7 @@ task getKeyStore {
     byte[] decodedKey = encodedKeyFile.decodeBase64()
     def newFile = new File("sign.keystore")
     newFile.setBytes(decodedKey)
+    outputs.upToDateWhen { false }
 }
 
 afterEvaluate {
